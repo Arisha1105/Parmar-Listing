@@ -93,7 +93,6 @@ type PropertyValues = z.input<typeof masterPropertySchema>;
 type PropertyOutput = z.output<typeof masterPropertySchema>;
 
 const NO_LOCATION = "none";
-const NO_PHASE = "none";
 
 interface PropertyFormProps {
   property?: Property;
@@ -106,7 +105,6 @@ interface FormLookups {
   statuses: LookupItem[];
   types: LookupItem[];
   amenities: LookupItem[];
-  launchPhases: LookupItem[];
 }
 
 const emptyLookups: FormLookups = {
@@ -115,7 +113,6 @@ const emptyLookups: FormLookups = {
   statuses: [],
   types: [],
   amenities: [],
-  launchPhases: [],
 };
 
 const VARIANT_TO_BHK_SLUGS: Record<PropertyConfigVariant, string[]> = {
@@ -182,7 +179,6 @@ function toFormValues(property?: Property): DefaultValues<PropertyValues> {
     is_recommended: property?.is_recommended ?? false,
     is_new_launch: property?.is_new_launch ?? false,
     is_luxury_collection: property?.is_luxury_collection ?? false,
-    launch_phase_id: property?.launch_phase_id ?? "",
     rera_id: property?.rera_id ?? property?.rera_number ?? "",
     latitude: property?.latitude ?? null,
     longitude: property?.longitude ?? null,
@@ -242,7 +238,6 @@ export function PropertyForm({ property, onSaved }: PropertyFormProps) {
           statuses: loaded.statuses,
           types: loaded.types,
           amenities: loaded.amenities,
-          launchPhases: loaded.launchPhases,
         })
       )
       .catch((error) => toast.error(getErrorMessage(error)));
@@ -1117,35 +1112,6 @@ export function PropertyForm({ property, onSaved }: PropertyFormProps) {
               }
             />
           </div>
-
-          <Field
-            label="Launch phase"
-            hint="Badge shown on new launch cards."
-            error={errors.launch_phase_id?.message}
-          >
-            <Select
-              value={form.watch("launch_phase_id") || NO_PHASE}
-              onValueChange={(value) =>
-                form.setValue(
-                  "launch_phase_id",
-                  value === NO_PHASE ? "" : value,
-                  { shouldDirty: true }
-                )
-              }
-            >
-              <SelectTrigger aria-label="Launch phase">
-                <SelectValue placeholder="Not set" />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value={NO_PHASE}>Not set</SelectItem>
-                {lookups.launchPhases.map((option) => (
-                  <SelectItem key={option.id} value={option.id}>
-                    {option.name}
-                  </SelectItem>
-                ))}
-              </SelectContent>
-            </Select>
-          </Field>
 
           <Field
             label="Meta title"

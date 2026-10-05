@@ -32,6 +32,7 @@
 
 ### 3. Completed Tasks ✅
 
+- [x] **Remove obsolete `launch_phase_id` from Admin Add Property create/update** (Done: 2026-10-05) — Dropped from master schema validation, DB payload, Property type, form UI, and form lookups after remote migration `012`.
 - [x] **CMS-drive Locations filter bar + Hero + Why Parmar + Home Insights** (Done: 2026-10-04) — Seeded existing Frontend content into `hero_slides` / `page_content` / `locations` / `insights_articles`; Frontend now reads these sections from Supabase with fallbacks.
 - [x] **Task 5.2: Dynamic Hero Carousel Slides** (Done: 2026-10-04) — `HeroCarousel` reads active slides from `hero_slides` + headline/subtext from `page_content`.
 - [x] **Backend RLS: publication_status authority for properties + children** (Done: 2026-10-04) — Migration `010_publication_status_rls.sql` authored (not yet applied to Supabase).

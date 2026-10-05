@@ -170,7 +170,6 @@ export interface Property extends AuditFields {
   is_new_launch: boolean;
   /** Editorial Luxury Collection inclusion (also derived from price ≥ ₹25 Cr). */
   is_luxury_collection: boolean;
-  launch_phase_id: string | null;
   cover_image: string | null;
   rera_id: string | null;
   rera_qr_image: string | null;

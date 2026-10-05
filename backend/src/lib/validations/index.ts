@@ -178,7 +178,6 @@ export const masterPropertySchema = z.object({
   is_recommended: z.boolean().default(false),
   is_new_launch: z.boolean().default(false),
   is_luxury_collection: z.boolean().default(false),
-  launch_phase_id: z.string().uuid().optional().nullable().or(z.literal("")),
   rera_id: z.string().min(1, "RERA number is required").max(50),
   latitude: optionalNumber(z.coerce.number().min(-90).max(90)),
   longitude: optionalNumber(z.coerce.number().min(-180).max(180)),

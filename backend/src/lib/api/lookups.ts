@@ -254,15 +254,13 @@ export async function repairLookupOrdering(table: LookupTable): Promise<void> {
 }
 
 export async function listPropertyFormLookups() {
-  const [locations, bhk, statuses, types, amenities, launchPhases] =
-    await Promise.all([
-      listLookupLocations(),
-      listLookupBhk(),
-      listLookupConstructionStatus(),
-      listLookupPropertyTypes(),
-      listLookupAmenities(),
-      listLookupConstructionStatus(),
-    ]);
+  const [locations, bhk, statuses, types, amenities] = await Promise.all([
+    listLookupLocations(),
+    listLookupBhk(),
+    listLookupConstructionStatus(),
+    listLookupPropertyTypes(),
+    listLookupAmenities(),
+  ]);
 
   return {
     locations,
@@ -270,8 +268,5 @@ export async function listPropertyFormLookups() {
     statuses,
     types,
     amenities,
-    launchPhases: launchPhases.filter((item) =>
-      ["pre-launch", "under-construction"].includes(item.slug)
-    ),
   };
 }

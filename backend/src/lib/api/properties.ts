@@ -289,10 +289,6 @@ function toPropertyPayload(input: PropertyInput): Record<string, unknown> {
 function toMasterPropertyPayload(
   input: MasterPropertyInput
 ): Record<string, unknown> {
-  const launchPhaseId =
-    input.launch_phase_id && input.launch_phase_id !== ""
-      ? input.launch_phase_id
-      : null;
   const locationId =
     input.location_id && input.location_id !== "" ? input.location_id : null;
 
@@ -349,7 +345,6 @@ function toMasterPropertyPayload(
     is_recommended: input.is_recommended,
     is_new_launch: input.is_new_launch,
     is_luxury_collection: input.is_luxury_collection,
-    launch_phase_id: launchPhaseId,
     rera_id: input.rera_id,
     latitude: input.latitude ?? null,
     longitude: input.longitude ?? null,

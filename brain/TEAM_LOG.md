@@ -28,6 +28,22 @@
 
 ## 📜 Activity Stream
 
+### [2026-10-05 16:25] — Antigravity (AI) & Arisha — Remove obsolete `launch_phase_id` from Add Property flow
+- **Branch:** `main` (working tree)
+- **What Was Done:**
+  - Column `properties.launch_phase_id` was already dropped remotely (`012_drop_properties_launch_phase_id.sql`); Admin create/update still sent it and failed.
+  - Removed `launch_phase_id` from `masterPropertySchema`, `toMasterPropertyPayload` (create/update), `Property` type, Add Property form field, and `listPropertyFormLookups` launch-phases fetch.
+  - No new migration; no schema recreation.
+- **Files Touched / Created:**
+  - [`backend/src/lib/api/properties.ts`](../backend/src/lib/api/properties.ts)
+  - [`backend/src/lib/validations/index.ts`](../backend/src/lib/validations/index.ts)
+  - [`backend/src/types/index.ts`](../backend/src/types/index.ts)
+  - [`backend/src/lib/api/lookups.ts`](../backend/src/lib/api/lookups.ts)
+  - [`backend/src/components/properties/property-form.tsx`](../backend/src/components/properties/property-form.tsx)
+- **Current State:** `npm run typecheck` and `npm run build` both pass. No active Add Property create/update path sends `launch_phase_id`.
+- **Next Steps for Next Developer:** Optionally sync local migrations with remote `012_drop_properties_launch_phase_id.sql` if the file should live in-repo; update MASTER_BACKEND_SPEC Launch Phase row when convenient.
+- **Blockers / Questions:** Local `supabase/migrations/` still lacks `012_drop_properties_launch_phase_id.sql` (remote-only).
+
 ### [2026-10-04 16:45] — Antigravity (AI) & Arisha — Location ordering + homepage filter CMS wiring
 - **Branch:** `main` (working tree)
 - **What Was Done:**
